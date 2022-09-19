@@ -3,6 +3,8 @@
 {
   programs.home-manager.enable = true;
 
+  imports = [(import ../modules)];
+
   home = {
     inherit stateVersion;
 
@@ -40,7 +42,7 @@
       package = pkgs.tela-circle-icon-theme;
     };
     font = {
-      name = "JetBrainsMono Nerd Font Regular";
+      name = "Roboto Regular";
     };
   };
 }

@@ -2,7 +2,6 @@
 
 let
   system = "x86_64-linux";
-  hostname = "xps";
 in
 {
   laptop = lib.nixosSystem {

@@ -1,0 +1,5 @@
+[
+  ./desktop
+  ./programs
+  ./services
+]

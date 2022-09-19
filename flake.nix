@@ -14,11 +14,16 @@
     let
       user = "pbaudry";
       stateVersion = "22.05";
+
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
     in {
       nixosConfigurations = (
         import ./hosts {
           inherit (nixpkgs) lib;
-          inherit nixpkgs home-manager user stateVersion;
+          inherit pkgs home-manager user stateVersion;
         };
       )
     };
