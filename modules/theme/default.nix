@@ -1,11 +1,26 @@
+{ pkgs, ... }:
+
 let
   schemes = import ./schemes.nix;
-  theme = schemes.doom
+  colors = schemes.doom
 in {
-  inherit theme;
-  primary = theme.dark_blue;
-  secondary = theme.dark_magenta;
-  success = theme.dark_green;
-  warning = theme.dark_yellow;
-  danger = theme.dark_red;
+  colors = {
+    inherit colors;
+    primary = colors.dark_blue;
+    secondary = colors.dark_magenta;
+    success = colors.dark_green;
+    warning = colors.dark_yellow;
+    danger = colors.dark_red;
+  };
+
+  fonts = {
+    normal = "Noto Sans";
+    mono = "Noto Sans Mono";
+    nerd = "JetBrainsMono Nerd Font";
+  };
+
+  iconTheme = {
+    name = "Tela-Dark";
+    package = pkgs.tela-circle-icon-theme;
+  };
 }

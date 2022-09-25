@@ -2,7 +2,8 @@
 
 let
   font = "JetBrainsMono Nerd Font Mono";
-  colors = import ../theme;
+  theme = import ../../theme;
+  colors = theme.colors;
 in {
   programs.alacritty = {
     enable = true;
@@ -13,7 +14,7 @@ in {
           WINIT_X11_SCALE_FACTOR = "1.0";
         };
         shell = {
-          program = "${pkgs.fish}";
+          program = "${pkgs.fish}/bin/fish";
           args = [
             "--login"
           ];

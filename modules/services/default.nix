@@ -1,3 +1,7 @@
 [
-  ./flameshot.nix
+  ./dunst
+  ./flameshot
+  ./picom
+  ./sxhkd
+  ./transmission
 ]

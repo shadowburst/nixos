@@ -85,5 +85,18 @@
         };
       };
     };
+    xserver = {
+      videoDrivers = [ "intel" ];
+      libinput = {
+        enable = true;
+        touchpad = {
+          disableWhenTyping = true;
+          middleEmulation = true;
+          naturalScrolling = true;
+          tapping = true;
+          tappingDragLock = true;
+        };
+      };
+    };
   };
 }

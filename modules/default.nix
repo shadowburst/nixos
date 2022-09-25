@@ -1,5 +1,4 @@
 [
-  ./desktop
   ./programs
   ./services
 ]

@@ -1,7 +1,14 @@
 [
-  ./alacritty.nix
-  ./exa.nix
-  ./feh.nix
-  ./fish.nix
-  ./git.nix
+  ./alacritty
+  ./emacs
+  ./eww
+  ./exa
+  ./feh
+  ./fish
+  ./git
+  ./lazydocker
+  ./leftwm
+  ./mpv
+  ./neovim
+  ./tremc
 ]

@@ -16,16 +16,18 @@
 
   console.keyMap = "fr";
 
-  sound = {
-    enable = true;
-    mediaKeys.enable = true;
-  };
-  security.rtkit.enable = true;
+  networking.networkManager.enable = true;
 
   hardware.sane = {
     enable = true;
     extraBackends = [ pkgs.brscan5 ];
   };
+
+  sound = {
+    enable = true;
+    mediaKeys.enable = true;
+  };
+  security.rtkit.enable = true;
 
   environment = {
     valiables = {
@@ -38,17 +40,29 @@
       cmake
       curl
       wget
+      xorg.xrandr
     ];
   };
 
-  fonts.fonts = with pkgs; [
-    roboto
-    (nerdfonts.override {
-      fonts = [ "JetBrainsMono" ];
-    })
-  ];
+  fonts = {
+    enableDefaultFonts = true;
+    fonts = with pkgs; [
+      corefonts
+      noto-fonts
+      noto-fonts-emoji
+      (nerdfonts.override {
+        fonts = [ "JetBrainsMono" ];
+      })
+    ];
+    fontconfig.defaultFonts = {
+      serif = [ "Noto Sans" ];
+      sansSerif = [ "Noto Sans" ];
+      monospace = [ "Noto Sans Mono" ];
+    };
+  };
 
   services = {
+    cron.enable = true;
     openssh.enable = true;
     printing.enable = true;
 
@@ -77,9 +91,20 @@
         /home/${user}/Public  192.168.1.0/24()
       '';
     };
+
+    xserver = {
+      numlock.enable = true;
+      layout = "fr";
+      xkbdVariant = "azerty";
+      displayManager = {
+        startx.enable = true;
+        defaultSession = "none+leftwm";
+      };
+      windowManager = {
+        leftwm.enable = true;
+      };
+    };
   };
-
-
 
   nix = {
     settings = {
@@ -101,5 +126,4 @@
     '';
   };
   nixpkgs.config.allowUnfree = true;
-
 }
