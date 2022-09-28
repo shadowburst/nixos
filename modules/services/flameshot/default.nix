@@ -1,11 +1,11 @@
 { user, ... }:
 
 let
-  colors = import ../../theme/colors.nix;
+  theme = import ../../theme;
 in {
   services.flameshot = {
     enable = true;
-    settings = {
+    settings = with theme; {
       General = {
         contrastOpacity = 188;
         contrastUiColor = colors.black;

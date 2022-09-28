@@ -1,8 +1,7 @@
 { pkgs, ... }:
 
 let
-  colors = import ../../theme/colors.nix;
-  fonts = import ../../theme/fonts.nix;
+  theme = import ../../theme;
 in {
   programs.alacritty = {
     enable = true;
@@ -24,48 +23,48 @@ in {
         };
         opacity = "0.8";
       };
-      font = {
+      font = with theme.fonts; {
         normal = {
-          family = "${fonts.normal}";
+          family = "${normal}";
           style = "Regular";
         };
         bold = {
-          family = "${fonts.normal}";
+          family = "${normal}";
           style = "Bold";
         };
         italic = {
-          family = "${fonts.normal}";
+          family = "${normal}";
           style = "Italic";
         };
         bold_italic = {
-          family = "${fonts.normal}";
+          family = "${normal}";
           style = "Bold Italic";
         };
       };
-      colors = {
+      colors = with theme.colors; {
         primary = {
-          background = colors.bg;
-          foreground = colors.fg;
+          background = bg;
+          foreground = fg;
         };
         normal = {
-          black = colors.black;
-          red = colors.dark_red;
-          green = colors.dark_green;
-          yellow = colors.dark_yellow;
-          blue = colors.dark_blue;
-          magenta = colors.dark_magenta;
-          cyan = colors.dark_cyan;
-          white = colors.dark_gray;
+          black = black;
+          red = dark_red;
+          green = dark_green;
+          yellow = dark_yellow;
+          blue = dark_blue;
+          magenta = dark_magenta;
+          cyan = dark_cyan;
+          white = dark_gray;
         };
         bright = {
-          black = colors.light_gray;
-          red = colors.light_red;
-          green = colors.light_green;
-          yellow = colors.light_yellow;
-          blue = colors.light_blue;
-          magenta = colors.light_magenta;
-          cyan = colors.light_cyan;
-          white = colors.white;
+          black = light_gray;
+          red = light_red;
+          green = light_green;
+          yellow = light_yellow;
+          blue = light_blue;
+          magenta = light_magenta;
+          cyan = light_cyan;
+          white = white;
         };
       };
     };

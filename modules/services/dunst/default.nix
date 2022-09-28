@@ -1,9 +1,7 @@
 { config, lib, pkgs, ... }:
 
 let
-  colors = import ../../theme/colors.nix;
-  fonts = import ../../theme/fonts.nix;
-  iconTheme = import ../../theme/iconTheme.nix;
+  theme = import ../../theme;
 in {
   home.packages = with pkgs; [
     libnotify
@@ -11,12 +9,12 @@ in {
 
   services.dunst = {
     enable = true;
-    iconTheme = {
-      name = iconTheme.name;
-      package = iconTheme.package;
+    iconTheme = with theme.iconTheme; {
+      name = name;
+      package = pkgs."${package}";
       size = "32x32";
     };
-    settings = {
+    settings = with theme; {
       global = {
         monitor = 0;
         follow = "none";
@@ -62,7 +60,7 @@ in {
         sticky_history = true;
         history_length = 20;
         dmenu = "rofi -dmenu";
-        browser = /usr/bin/xdg-open;
+        browser = "${pkgs.xdg-utils}/bin/xdg-open";
         always_run_script = true;
         title = "Dunst";
         class = "Dunst";

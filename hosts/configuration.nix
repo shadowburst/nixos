@@ -40,6 +40,7 @@
       cmake
       curl
       wget
+      xdg-utils
       xorg.xrandr
     ];
   };
@@ -197,7 +198,7 @@
       options = "--delete-older-than 7d";
     };
 
-    package = pkgs.nixFlakes;
+    # package = pkgs.nixFlakes;
     registry.nixpkgs.flake = pkgs;
     extraOptions = ''
       experimental-features = nix-command flakes
