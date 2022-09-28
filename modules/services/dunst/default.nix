@@ -1,7 +1,9 @@
 { config, lib, pkgs, ... }:
 
 let
-  theme = import ../../theme;
+  colors = import ../../theme/colors.nix;
+  fonts = import ../../theme/fonts.nix;
+  iconTheme = import ../../theme/iconTheme.nix;
 in {
   home.packages = with pkgs; [
     libnotify
@@ -10,7 +12,8 @@ in {
   services.dunst = {
     enable = true;
     iconTheme = {
-      inherit theme.iconTheme;
+      name = iconTheme.name;
+      package = iconTheme.package;
       size = "32x32";
     };
     settings = {
@@ -35,15 +38,15 @@ in {
         horizontal_padding = 8;
         text_icon_padding = 10;
         frame_width = 3;
-        frame_color = theme.colors.primary;
+        frame_color = colors.primary;
         gap_size = 10;
         separator_color = "frame";
         sort = true;
-        font = "${theme.fonts.normal} 11";
+        font = "${fonts.normal} 11";
         line_height = 0;
         markup = "full";
-        format = "<span font=\"${theme.fonts.normal} 14\"><b>%s</b></span>\n%b";
-        alignment = left;
+        format = ''<span font="${fonts.normal} 14"><b>%s</b></span>\n%b'';
+        alignment = "left";
         vertical_alignment = "center";
         show_age_threshold = 60;
         ellipsize = "middle";
@@ -72,20 +75,20 @@ in {
         mouse_right_click = "do_action";
       };
       urgency_low = {
-        background = theme.colors.bg;
-        foreground = theme.colors.fg;
+        background = colors.bg;
+        foreground = colors.fg;
         timeout = 5;
       };
       urgency_normal = {
-        background = theme.colors.bg;
-        foreground = theme.colors.fg;
-        frame_color = theme.colors.primary;
+        background = colors.bg;
+        foreground = colors.fg;
+        frame_color = colors.primary;
         timeout = 5;
       };
       urgency_critical = {
-        background = theme.colors.bg;
-        foreground = theme.colors.fg;
-        frame_color = theme.colors.danger;
+        background = colors.bg;
+        foreground = colors.fg;
+        frame_color = colors.danger;
         timeout = 0;
       };
     };

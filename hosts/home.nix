@@ -1,11 +1,14 @@
 { config, lib, pkgs, user, stateVersion, ... }:
 
 let
-  theme = import ../modules/theme
+  fonts = import ../modules/theme/fonts.nix;
+  iconTheme = import ../modules/theme/iconTheme.nix;
 in {
   programs.home-manager.enable = true;
 
-  imports = [(import ../modules)];
+  imports =
+    (import ../modules/programs) ++
+    (import ../modules/services);
 
   xdg.userDirs.createDirectories = true;
   home = {
@@ -43,15 +46,18 @@ in {
       name = "Orchis";
       package = pkgs.orchis-theme;
     };
-    iconTheme = theme.iconTheme;
+    iconTheme = {
+      name = iconTheme.name;
+      package = iconTheme.package;
+    };
     font = {
-      name = "${theme.fonts.normal} Regular";
+      name = "${fonts.normal} Regular";
     };
   };
 
-  qt5 = {
+  qt = {
     enable = true;
     platformTheme = "gtk";
-    style = "adwaita-dark";
+    style.name = "adwaita-dark";
   };
 }

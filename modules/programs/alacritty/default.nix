@@ -1,9 +1,8 @@
 { pkgs, ... }:
 
 let
-  font = "JetBrainsMono Nerd Font Mono";
-  theme = import ../../theme;
-  colors = theme.colors;
+  colors = import ../../theme/colors.nix;
+  fonts = import ../../theme/fonts.nix;
 in {
   programs.alacritty = {
     enable = true;
@@ -27,19 +26,19 @@ in {
       };
       font = {
         normal = {
-          family = "${font}";
+          family = "${fonts.normal}";
           style = "Regular";
         };
         bold = {
-          family = "${font}";
+          family = "${fonts.normal}";
           style = "Bold";
         };
         italic = {
-          family = "${font}";
+          family = "${fonts.normal}";
           style = "Italic";
         };
         bold_italic = {
-          family = "${font}";
+          family = "${fonts.normal}";
           style = "Bold Italic";
         };
       };

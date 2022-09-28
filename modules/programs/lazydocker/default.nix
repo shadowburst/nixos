@@ -1,8 +1,11 @@
+{ pkgs, ... }:
+
 {
-  programs.lazydocker = {
-    enable = true;
-  };
+  home.packages = with pkgs; [
+    lazydocker
+  ];
+
   xdg.configFile."lazydocker/config.yml" = {
-    source ./config.yml;
-  }
+    source = ./config.yml;
+  };
 }

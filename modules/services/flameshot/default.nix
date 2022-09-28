@@ -1,16 +1,16 @@
 { user, ... }:
 
 let
-  theme = import ../../theme;
+  colors = import ../../theme/colors.nix;
 in {
   services.flameshot = {
     enable = true;
     settings = {
       General = {
         contrastOpacity = 188;
-        contrastUiColor = theme.black;
+        contrastUiColor = colors.black;
         disabledTrayIcon = true;
-        drawColor = theme.dark_green;
+        drawColor = colors.dark_green;
         drawThickness = 3;
         savePath = "/home/${user}/Pictures";
         savePathFixed = false;
@@ -18,7 +18,7 @@ in {
         showSidePanelButton = false;
         showStartupLaunchMessage = false;
         startupLaunch = true;
-        uiColor = theme.primary;
+        uiColor = colors.primary;
       };
       Shortcuts = {
         TYPE_ARROW = "A";

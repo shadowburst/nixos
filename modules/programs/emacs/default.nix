@@ -1,16 +1,19 @@
+{ pkgs, ...}:
+
 {
   programs.emacs = {
     enable = true;
   };
 
-  home.programs = with pkgs; [
+  home.packages = with pkgs; [
+    fd
     ripgrep
   ];
 
   
   xdg.configFile."doom" = {
-    source ./config;
+    source = ./config;
     recursive = true;
-    onChange = ./doom.sh;
-  }
+    onChange = builtins.readFile ./doom.sh;
+  };
 }

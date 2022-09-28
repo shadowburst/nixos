@@ -14,6 +14,7 @@
 
       grub = {
         enable = true;
+        device = "/dev/sda";
         version = 2;
         efiSupport = true;
         useOSProber = true;
@@ -21,6 +22,15 @@
       };
       timeout = 1;
     };
+  };
+
+  networking.hostName = "xps";
+
+  hardware.opengl = {
+    driSupport = true;
+    extraPackages = [
+      intel-compute-runtime
+    ];
   };
 
   programs = {

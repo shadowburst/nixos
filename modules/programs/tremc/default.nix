@@ -6,6 +6,6 @@
   ];
 
   xdg.configFile."tremc/settings.cfg" = {
-    source ./settings.cfg;
+    source = ./settings.cfg;
   };
 }

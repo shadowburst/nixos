@@ -28,8 +28,8 @@
       zoom_out = [ "C-Down" "a" ];
       zoom_default = "d";
       zoom_fit = "s";
-      save_image = "";
-      save_filelist = "";
+      save_image = null;
+      save_filelist = null;
     };
   };
 }

@@ -1,6 +1,6 @@
 {
   xdg.configFile."leftwm" = {
-    source ./config;
+    source = ./config;
     recursive = true;
   };
 }

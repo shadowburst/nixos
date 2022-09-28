@@ -4,7 +4,7 @@
   };
 
   xdg.configFile."eww" = {
-    source ./config;
+    source = ./config;
     recursive = true;
-  }
+  };
 }

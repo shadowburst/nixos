@@ -1,7 +1,12 @@
-{ lib, pkgs, home-manager, user, stateVersion, ... }:
+{ lib, nixpkgs, home-manager, user, stateVersion, ... }:
 
 let
   system = "x86_64-linux";
+
+  pkgs = import nixpkgs {
+    inherit system;
+    config.allowUnfree = true;
+  };
 in
 {
   laptop = lib.nixosSystem {
@@ -15,7 +20,7 @@ in
 
       home-manager.nixosModules.home-manager {
         home-manager.useGlobalPkgs = true;
-        home-manager.useUserPkgs = true;
+        home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = {
           inherit user stateVersion;
         };
