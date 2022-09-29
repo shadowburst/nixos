@@ -1,8 +1,7 @@
 { config, lib, pkgs, user, stateVersion, ... }:
 
 let
-  fonts = import ../modules/theme/fonts.nix;
-  iconTheme = import ../modules/theme/iconTheme.nix;
+  theme = import ../modules/theme;
 in {
   programs.home-manager.enable = true;
 
@@ -40,7 +39,7 @@ in {
     };
   };
 
-  gtk = {
+  gtk = with theme; {
     enable = true;
     theme = {
       name = "Orchis";
