@@ -78,7 +78,7 @@ in {
     }
   '';
 
-  xdg.configFile."${torrent_done_script}" = {
+  xdg.configFile."${torrent_done_path}" = {
     text = ''
       #!/usr/bin/env bash
 
