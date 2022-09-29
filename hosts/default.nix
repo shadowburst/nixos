@@ -12,7 +12,7 @@ in
   laptop = lib.nixosSystem {
     inherit system;
     specialArgs = {
-      inherit user stateVersion;
+      inherit nixpkgs user stateVersion;
     };
     modules = [
       ./laptop
@@ -33,7 +33,7 @@ in
   vm = lib.nixosSystem {
     inherit system;
     specialArgs = {
-      inherit user stateVersion;
+      inherit nixpkgs user stateVersion;
     };
     modules = [
       ./vm

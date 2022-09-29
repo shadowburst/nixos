@@ -7,7 +7,7 @@
       keybindings = {
         "super + space" = "${config.xdg.configHome}/rofi/scripts/appmenu.sh";
         "super + x" = "${config.xdg.configHome}/rofi/scripts/powermenu.sh";
-        "control + shift + Escape" = "$TERMINAL -e bashtop";
+        "control + shift + Escape" = "$TERMINAL -e htop";
         "super + Return" = "$TERMINAL";
         "super + b" = "$BROWSER";
         "super + e" = "emacsclient -c -a 'emacs' --eval '(ranger)'";

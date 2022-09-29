@@ -1,4 +1,4 @@
-{ lib, pkgs, user, stateVersion, ... }:
+{ lib, nixpkgs, pkgs, user, stateVersion, ... }:
 
 {
   system.stateVersion = stateVersion;
@@ -189,7 +189,7 @@
 
   nix = {
     settings = {
-      auto-optimize-store = true;
+      auto-optimise-store = true;
     };
 
     gc = {
@@ -199,7 +199,7 @@
     };
 
     # package = pkgs.nixFlakes;
-    registry.nixpkgs.flake = pkgs;
+    registry.nixpkgs.flake = nixpkgs;
     extraOptions = ''
       experimental-features = nix-command flakes
       keep-outputs          = true

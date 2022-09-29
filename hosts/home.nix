@@ -19,12 +19,12 @@ in {
 
     packages = with pkgs; [
       arandr
-      bashtop
       brave
       discord
       docker
       firefox
       gimp
+      htop
       kdenlive
       onlyoffice-bin
       pavucontrol
@@ -48,7 +48,7 @@ in {
     };
     iconTheme = {
       name = iconTheme.name;
-      package = iconTheme.package;
+      package = pkgs."${iconTheme.package}";
     };
     font = {
       name = "${fonts.normal} Regular";
