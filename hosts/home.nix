@@ -39,6 +39,15 @@ in {
     };
   };
 
+  services = {
+    xcape = {
+      enable = true;
+      mapExpression = {
+        Super_L = "Super_L|space";
+      };
+    };
+  };
+
   gtk = with theme; {
     enable = true;
     theme = {

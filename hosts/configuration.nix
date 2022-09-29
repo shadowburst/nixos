@@ -37,6 +37,7 @@
     systemPackages = with pkgs; [
       cmake
       curl
+      gnome_polkit
       wget
       xdg-utils
       xorg.xrandr
@@ -70,6 +71,7 @@
     openssh.enable = true;
     printing.enable = true;
     transmission.enable = true;
+    gnome.gnome-keyring.enable = true;
 
     pipewire = {
       enable = true;
