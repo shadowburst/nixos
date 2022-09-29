@@ -1,8 +1,6 @@
 { lib, nixpkgs, pkgs, user, stateVersion, ... }:
 
 {
-  system.stateVersion = stateVersion;
-
   users.users.${user} = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkManager" "lp" "scanner" "kvm" "libvertd" ];
@@ -207,4 +205,12 @@
     '';
   };
   nixpkgs.config.allowUnfree = true;
+
+  system = {
+    inherit stateVersion;
+    autoUpgrade = {
+      enable = true;
+      channel = "https://nixos.org/channels/nixos-unstable";
+    };
+  };
 }
