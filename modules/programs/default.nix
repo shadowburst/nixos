@@ -11,4 +11,5 @@
   ./mpv
   ./neovim
   ./tremc
+  ./xorg
 ]
