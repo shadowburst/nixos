@@ -20,4 +20,9 @@
   };
 
   networking.hostName = "vm-nixos";
+
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+  };
 }

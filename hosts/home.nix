@@ -19,6 +19,7 @@ in {
     packages = with pkgs; [
       arandr
       brave
+      dconf
       discord
       docker
       firefox
@@ -40,10 +41,19 @@ in {
   };
 
   services = {
+    gnome-keyring = {
+      enable = true;
+      components = [
+        "pkcs11"
+        "secrets"
+        "ssh"
+      ];
+    };
+
     xcape = {
       enable = true;
       mapExpression = {
-        Super_L = "Super_L|space";
+        Super_L = "Super_L|a";
       };
     };
   };

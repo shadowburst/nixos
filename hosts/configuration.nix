@@ -37,7 +37,8 @@
     systemPackages = with pkgs; [
       cmake
       curl
-      gnome_polkit
+      gcc
+      polkit_gnome
       wget
       xdg-utils
       xorg.xrandr
@@ -68,10 +69,10 @@
         "0 */1 * * * ${pkgs.transmission}/bin/transmission-remote -l | grep 100\% | grep Done | awk '{print $1}' | xargs -n 1 -I \% ${pkgs.transmission}/bin/transmission-remote -t \% -r"
       ];
     };
+    fstrim.enable = true;
     openssh.enable = true;
     printing.enable = true;
     transmission.enable = true;
-    gnome.gnome-keyring.enable = true;
 
     pipewire = {
       enable = true;
@@ -92,14 +93,8 @@
       };
     };
 
-    nfs.server = {
-      enable = true;
-      exports = ''
-        /home/${user}/Public  192.168.1.0/24()
-      '';
-    };
-
     xserver = {
+      enable = true;
       layout = "fr";
       xkbVariant = "azerty";
       displayManager = {

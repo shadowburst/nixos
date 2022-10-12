@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   imports = [(import ./hardware-configuration.nix)];
@@ -26,11 +26,23 @@
 
   networking.hostName = "xps";
 
-  hardware.opengl = {
-    driSupport = true;
-    extraPackages = [
-      intel-compute-runtime
-    ];
+  environment.variables = {
+    VDPAU_DRIVER = lib.mkIf config.hardware.opengl.enable (lib.mkDefault "va_gl");
+  };
+
+  hardware = {
+    cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+    enableRedistributableFirmware = true;
+    opengl = {
+      enable = true;
+      driSupport = true;
+      driSupport32Bit = true;
+      extraPackages = with pkgs; [
+        intel-media-driver
+        libvdpau-va-gl
+        vaapiVdpau
+      ];
+    };
   };
 
   programs = {

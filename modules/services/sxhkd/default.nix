@@ -5,7 +5,7 @@
     services.sxhkd = {
       enable = true;
       keybindings = {
-        "super + space" = "${config.xdg.configHome}/rofi/scripts/appmenu.sh";
+        "super + a" = "${config.xdg.configHome}/rofi/scripts/appmenu.sh";
         "super + x" = "${config.xdg.configHome}/rofi/scripts/powermenu.sh";
         "control + shift + Escape" = "$TERMINAL -e htop";
         "super + Return" = "$TERMINAL";
