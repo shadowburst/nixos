@@ -10,6 +10,8 @@
   ./mpv
   ./neovim
   ./rofi
+  ./starship
   ./tremc
   ./xorg
+  ./zsh
 ]
