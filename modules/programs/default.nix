@@ -10,6 +10,7 @@
   ./leftwm
   ./mpv
   ./neovim
+  ./rofi
   ./tremc
   ./xorg
 ]
