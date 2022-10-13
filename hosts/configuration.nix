@@ -34,6 +34,8 @@
       EDITOR = "emacsclient -t";
     };
 
+    pathsToLink = [ "/share/zsh" ];
+
     systemPackages = with pkgs; [
       cmake
       curl

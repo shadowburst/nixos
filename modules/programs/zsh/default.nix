@@ -6,6 +6,4 @@
     enableSyntaxHighlighting = true;
     defaultKeymap = "viins";
   };
-
-  environment.pathsToLink = [ "/share/zsh" ];
 }
