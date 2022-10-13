@@ -32,12 +32,6 @@ in {
       wget
       wmctrl
     ];
-
-    pointerCursor = {
-      name = "Bibata-Modern-Classic";
-      package = pkgs.bibata-cursors;
-      size = 16;
-    };
   };
 
   services = {

@@ -1,5 +1,7 @@
 {
   xsession = {
+    enable = true;
+    numlock.enable = true;
     initExtra = ''
       sysresources=/etc/X11/xinit/.Xresources
       userresources="$HOME/.Xresources"
@@ -31,6 +33,11 @@
       # Load xfce settings
       xfsettingsd &
       (sleep 3 && xfce4-power-manager) &
-    ''
+    '';
+    pointerCursor = {
+      name = "Bibata-Modern-Classic";
+      package = pkgs.bibata-cursors;
+      size = 16;
+    };
   };
 }

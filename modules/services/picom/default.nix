@@ -5,7 +5,7 @@
     services.picom = {
       enable = true;
       package = pkgs.picom.overrideAttrs(o: {
-        src = pkgs.fetchForGithub {
+        src = pkgs.fetchFromGithub {
           repo = "picom";
           owner = "jonaburg";
           rev = "e3c19cd7d1108d114552267f302548c113278d45";
