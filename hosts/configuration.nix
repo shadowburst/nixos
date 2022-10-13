@@ -18,7 +18,13 @@
 
   hardware.sane = {
     enable = true;
-    extraBackends = [ pkgs.brscan5 ];
+    brscan4 = {
+      enable = true;
+      netDevices.Brother = {
+        model = "DCP-J785DW";
+        ip = "192.168.1.85";
+      };
+    };
   };
 
   sound = {
@@ -72,9 +78,13 @@
       ];
     };
     fstrim.enable = true;
-    openssh.enable = true;
     printing.enable = true;
     transmission.enable = true;
+
+    openssh = {
+      enable = true;
+      allowSFTP = true;
+    };
 
     pipewire = {
       enable = true;
