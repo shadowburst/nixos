@@ -21,23 +21,23 @@ in {
           x = 8;
           y = 8;
         };
-        opacity = "0.8";
+        opacity = 0.8;
       };
       font = with theme.fonts; {
         normal = {
-          family = "${normal}";
+          family = "${nerdMono}";
           style = "Regular";
         };
         bold = {
-          family = "${normal}";
+          family = "${nerdMono}";
           style = "Bold";
         };
         italic = {
-          family = "${normal}";
+          family = "${nerdMono}";
           style = "Italic";
         };
         bold_italic = {
-          family = "${normal}";
+          family = "${nerdMono}";
           style = "Bold Italic";
         };
       };

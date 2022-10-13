@@ -15,6 +15,7 @@ in {
     normal = "Noto Sans";
     mono = "Noto Sans Mono";
     nerd = "JetBrainsMono Nerd Font";
+    nerdMono = "JetBrainsMono Nerd Font Mono";
   };
 
   iconTheme = {
