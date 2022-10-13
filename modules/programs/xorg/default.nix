@@ -1,3 +1,5 @@
+{ pkgs, ... }:
+
 {
   xsession = {
     enable = true;
