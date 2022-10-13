@@ -7,9 +7,9 @@
       package = pkgs.picom.overrideAttrs(o: {
         src = pkgs.fetchFromGitHub {
           repo = "picom";
-          owner = "jonaburg";
-          rev = "e3c19cd7d1108d114552267f302548c113278d45";
-          sha256 = "4voCAYd0fzJHQjJo4x3RoWz5l3JJbRvgIXn1Kg6nz6Y=";
+          owner = "dccsillag";
+          rev = "eB758eb5e572d5d7cf28f28e5e409f 20eBbd2ded";
+          sha256 = "1qhpl0z52d71diclamnlv2igy3l361cqxzbkqyfxvhy5lf80airg";
         };
       });
 
@@ -40,12 +40,14 @@
           "class_g = 'Rofi'"
         ];
 
-        transition-length = 300;
-        transition-pow-x = 0.5;
-        transition-pow-y = 0.5;
-        transition-pow-w = 0.5;
-        transition-pow-h = 0.5;
-        size-transition = true;
+        animations = true;
+        animation-stiffness = 100
+        animation-window-mass = 0.4
+        animation-dampening = 10
+        animation-clamping = true
+        animation-for-open-window = "slide-down";
+        animation-for-unmap-window = "zoom";
+        animation-for-transient-window = "slide-down";
 
         blur = {
           method = "dual_kawase";
