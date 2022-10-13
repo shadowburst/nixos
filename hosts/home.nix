@@ -9,7 +9,6 @@ in {
     (import ../modules/programs) ++
     (import ../modules/services);
 
-  xdg.userDirs.createDirectories = true;
   home = {
     inherit stateVersion;
 
@@ -38,6 +37,13 @@ in {
       package = pkgs.bibata-cursors;
       size = 16;
       x11.enable = true;
+    };
+  };
+
+  xdg = {
+    userDirs = {
+      enable = true;
+      createDirectories = true;
     };
   };
 
