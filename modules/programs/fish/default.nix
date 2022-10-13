@@ -45,6 +45,9 @@
       mkdir = "mkdir -p";
       emacsclient = "emacsclient -c -a 'emacs'";
       emacsterm = "emacsclient -t";
+      ls = "exa --icons";
+      ll = "exa -la --icons";
+      lt = "exa -a --tree --icons";
     };
     shellInit = ''
       set fish_greeting
@@ -52,8 +55,6 @@
       set fish_color_param foreground
       set fish_color_option cyan
       set fish_color_error red
-
-      starship init fish | source
     '';
   };
 }

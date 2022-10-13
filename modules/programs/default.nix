@@ -2,7 +2,6 @@
   ./alacritty
   ./emacs
   ./eww
-  ./exa
   ./feh
   ./fish
   ./git

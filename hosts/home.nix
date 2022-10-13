@@ -21,6 +21,7 @@ in {
       dconf
       discord
       docker
+      exa
       firefox
       gimp
       htop
