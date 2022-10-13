@@ -41,10 +41,10 @@
         ];
 
         animations = true;
-        animation-stiffness = 100
-        animation-window-mass = 0.4
-        animation-dampening = 10
-        animation-clamping = true
+        animation-stiffness = 100;
+        animation-window-mass = 0.4;
+        animation-dampening = 10;
+        animation-clamping = true;
         animation-for-open-window = "slide-down";
         animation-for-unmap-window = "zoom";
         animation-for-transient-window = "slide-down";
