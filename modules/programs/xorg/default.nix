@@ -25,15 +25,17 @@
     enable = true;
     numlock.enable = true;
     profileExtra = ''
-      # eval $(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gpg)
-      # export SSH_AUTH_SOCK
+      eval $(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gpg)
+      export SSH_AUTH_SOCK
 
       # Load the polkit agent
       /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
-      # Load xfce settings
+      # Launch daemons
       xfsettingsd &
       (sleep 3 && xfce4-power-manager) &
+
+      emacs --daemon &
     '';
   };
 }
