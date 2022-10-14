@@ -49,6 +49,7 @@
       polkit_gnome
       wget
       xdg-utils
+      xdotool
       xorg.xrandr
     ];
   };
