@@ -1,4 +1,5 @@
 { pkgs, ... }:
+
 {
   home.file.".xinitrc".text = ''
     sysresources=/etc/X11/xinit/.Xresources
