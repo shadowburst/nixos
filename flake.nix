@@ -13,7 +13,7 @@
   outputs = { self, nixpkgs, home-manager, ...}:
     let
       user = "pbaudry";
-      stateVersion = "22.05";
+      stateVersion = "22.11";
     in {
       nixosConfigurations = (
         import ./hosts {

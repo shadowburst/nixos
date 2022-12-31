@@ -1,17 +1,10 @@
 [
   ./alacritty
-  ./emacs
-  ./eww
-  ./feh
-  ./fish
+  ./cava
   ./git
   ./lazydocker
-  ./leftwm
   ./mpv
-  ./neovim
-  ./rofi
-  ./starship
+  ./transmission
   ./tremc
   ./xorg
-  ./zsh
 ]

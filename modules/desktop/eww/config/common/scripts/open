@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+TERMINAL=alacritty
+
+case $1 in
+    "bluetooth")
+        blueman-manager
+        ;;
+    "launcher")
+        $HOME/.config/rofi/scripts/app-menu
+        ;;
+    "network")
+        $TERMINAL -e nmtui
+        ;;
+    "torrents")
+        $TERMINAL -e tremc
+        ;;
+    "tray")
+        if pkill trayer; then
+            eww update bar-tray-open=false
+        else
+            eww update bar-tray-open=true
+
+            trayer --edge top --align right --distance 36 --heighttype request --padding 6 --tint 0xFF1C1F24 --transparent true --alpha 0 --monitor "primary"
+        fi
+        ;;
+    "updates")
+        $TERMINAL -e bash -c "paru -Syu; echo Done - Press enter to exit...; read _"
+        ;;
+    "volume")
+        pavucontrol
+        ;;
+esac

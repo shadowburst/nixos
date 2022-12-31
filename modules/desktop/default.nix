@@ -1,0 +1,10 @@
+[
+  ./dunst
+  ./eww
+  ./feh
+  ./flameshot
+  ./leftwm
+  ./picom
+  ./rofi
+  ./sxhkd
+]

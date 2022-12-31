@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   home.file.".xinitrc".text = ''
     sysresources=/etc/X11/xinit/.Xresources
@@ -28,14 +29,12 @@
       eval $(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gpg)
       export SSH_AUTH_SOCK
 
-      # Load the polkit agent
       /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
-      # Launch daemons
       xfsettingsd &
-      (sleep 3 && xfce4-power-manager) &
+      (sleep 10 && xfce4-power-manager) &
 
-      emacs --daemon &
+      SHELL=${pkgs.fish}/bin/fish emacs --daemon &
     '';
   };
 }

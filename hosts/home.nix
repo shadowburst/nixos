@@ -6,8 +6,10 @@ in {
   programs.home-manager.enable = true;
 
   imports =
+    (import ../modules/desktop) ++
+    (import ../modules/editors) ++
     (import ../modules/programs) ++
-    (import ../modules/services);
+    (import ../modules/shells);
 
   home = {
     inherit stateVersion;

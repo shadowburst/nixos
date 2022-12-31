@@ -1,0 +1,151 @@
+$black: #1c1f24;
+$dark-gray: #202328;
+
+$dark-red: #ff6c6b;
+$light-red: #da8548;
+
+$dark-green: #98be65;
+$light-green: #4db5bd;
+
+$dark-yellow: #ecbe7b;
+$light-yellow: #ecbe7b;
+
+$dark-blue: #51afef;
+$light-blue: #2257a0;
+
+$dark-magenta: #5657f5;
+$light-magenta: #a9a1e1;
+
+$dark-cyan: #5699af;
+$light-cyan: #46d9ff;
+
+$light-gray: #5b6268;
+$white: #dfdfdf;
+
+$foreground: #bbc2cf;
+$background: #282c34;
+
+$primary: $dark-magenta;
+$secondary: $light-magenta;
+$success: $dark-green;
+$warning: $light-red;
+$danger: $dark-red;
+$disabled: $light-gray;
+
+$font: "Noto Sans";
+$mono-font: "Noto Sans Mono";
+$nerd-font: "JetBrainsMono Nerd Font Mono";
+$variable-nerd-font: "JetBrainsMono Nerd Font";
+$icon-size: 2rem;
+
+$colors: (
+  primary: $primary,
+  secondary: $secondary,
+  success: $success,
+  warning: $warning,
+  danger: $danger,
+  disabled: $disabled,
+);
+
+@function get-color($key) {
+  @return map-get($map: $colors, $key: $key);
+}
+
+* {
+  all: unset;
+}
+
+.rounded {
+  border-radius: 13px;
+}
+
+.container {
+  @extend .rounded;
+  background-color: $background;
+}
+
+tooltip {
+  background-color: $background;
+  color: $foreground;
+  font-family: $mono-font;
+
+  & label {
+    margin: 0.3rem;
+  }
+}
+
+.icon {
+  @extend .rounded;
+  color: $foreground;
+  font-family: $nerd-font;
+  font-size: $icon-size;
+
+  &--variable {
+    $padding: 0.2rem;
+
+    @extend .rounded;
+    margin: $padding 0;
+    color: $foreground;
+    font-family: $variable-nerd-font;
+    font-size: calc(#{$icon-size} - #{$padding} * 2);
+  }
+
+  &--inverted {
+    @extend .icon;
+    color: $background;
+
+    &--variable {
+      @extend .icon--variable;
+      color: $background;
+    }
+  }
+
+  @each $key, $val in $colors {
+    &--#{$key} {
+      @extend .icon;
+      color: $val;
+
+      &--variable {
+        @extend .icon--variable;
+        color: $val;
+      }
+    }
+  }
+}
+
+.label {
+  color: $foreground;
+  font-family: $font;
+  font-size: 1rem;
+}
+
+.icon-label {
+  @extend .label;
+  margin: 0 0 0 5px;
+}
+
+.mono-label {
+  @extend .label;
+  font-family: $mono-font;
+}
+
+.button {
+  @extend .container;
+  background-color: inherit;
+  padding: 0 0.8rem;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.03);
+  }
+
+  @each $key, $val in $colors {
+    &--#{$key} {
+      @extend .button;
+      background-color: $val;
+
+      &:hover {
+        background-color: shade($val, 0.95);
+      }
+    }
+  }
+}
