@@ -42,7 +42,11 @@
 
       directory = {
         style = "bold blue";
-        format = "[] [$path]($style) ";
+        format = "[ $path]($style) ";
+      };
+
+      git_branch = {
+        style = "Bold bright-purple";
       };
     };
   };
