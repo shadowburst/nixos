@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, user, ... }:
 
 let
   theme = import ../../theme;
@@ -6,17 +6,18 @@ in {
   programs.alacritty = {
     enable = true;
     settings = {
+      env = {
+        TERM = "xterm-256color";
+        WINIT_X11_SCALE_FACTOR = "1.0";
+      };
+      shell = {
+        program = "${pkgs.fish}/bin/fish";
+        args = [
+          "--login"
+        ];
+      };
+      working_directory = "/home/${user}";
       window = {
-        env = {
-          TERM = "xterm-256color";
-          WINIT_X11_SCALE_FACTOR = "1.0";
-        };
-        shell = {
-          program = "${pkgs.fish}/bin/fish";
-          args = [
-            "--login"
-          ];
-        };
         padding = {
           x = 8;
           y = 8;
