@@ -1,16 +1,12 @@
 { lib, nixpkgs, home-manager, user, stateVersion, ... }:
 
 let
-  system = "x86_64-linux";
-
   pkgs = import nixpkgs {
-    inherit system;
     config.allowUnfree = true;
   };
 in
 {
   laptop = lib.nixosSystem {
-    inherit system;
     specialArgs = {
       inherit nixpkgs user stateVersion;
     };
@@ -31,7 +27,6 @@ in
     ];
   };
   vm = lib.nixosSystem {
-    inherit system;
     specialArgs = {
       inherit nixpkgs user stateVersion;
     };
