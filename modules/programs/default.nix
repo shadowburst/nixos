@@ -3,6 +3,7 @@
   ./cava
   ./git
   ./lazydocker
+  ./lazygit
   ./mpv
   ./transmission
   ./tremc

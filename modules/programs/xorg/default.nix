@@ -35,7 +35,7 @@
       xfsettingsd &
       (sleep 10 && xfce4-power-manager) &
 
-      SHELL=${pkgs.fish}/bin/fish emacs --daemon &
+      emacs --daemon &
     '';
   };
 }

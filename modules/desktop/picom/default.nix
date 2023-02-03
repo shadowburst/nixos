@@ -18,8 +18,19 @@
 
       shadow = false;
       shadowOpacity = 0.75;
+      shadowExclude = [
+        "name = 'Notification'",
+        "class_g = 'Conky'",
+        "class_g ?= 'Notify-osd'",
+        "class_g = 'Cairo-clock'",
+        "class_g = 'slop'",
+        "class_g = 'Rofi'",
+        "_GTK_FRAME_EXTENTS@:c",
+        "_NET_WM_STATE@:32a *= '_NET_WM_STATE_HIDDEN'"
+      ];
       fade = true;
-      fadeDelta = 100;
+      fadeDelta = 3;
+      fadeSteps = [0.03 0.03];
       opacityRules = [];
 
       settings = {
@@ -32,37 +43,59 @@
           "window_type = 'dock'"
           "class_g = 'i3lock'"
           "class_g = 'Rofi'"
+          "class_g = 'Dunst'"
         ];
         round-borders = 15;
         round-borders-exclude = [
           "window_type = 'dock'"
           "class_g = 'i3lock'"
           "class_g = 'Rofi'"
+          "class_g = 'Dunst'"
         ];
 
         animations = true;
-        animation-stiffness = 100;
-        animation-window-mass = 0.4;
-        animation-dampening = 10;
-        animation-clamping = true;
+        animation-stiffness = 120
+        animation-window-mass = 1.0
+        animation-dampening = 14
+        animation-clamping = false
         animation-for-open-window = "slide-down";
         animation-for-unmap-window = "zoom";
         animation-for-transient-window = "slide-down";
 
         blur = {
           method = "dual_kawase";
-          strength = 8.0;
+          strength = 4.0;
           deviation = 1.0;
-          kernel = "11x11gaussian";
+          kernel = "7x7gaussian";
         };
+        blur-background = false;
+        blur-background-frame = true;
+        blur-background-fixed = true;
+        blur-background-exclude = [
+          "window_type = 'menu'",
+          "window_type = 'dropdown_menu'",
+          "window_type = 'popup_menu'",
+          "window_type = 'tooltip'",
+          "window_type = 'notification'",
+          "_GTK_FRAME_EXTENTS@:c",
+          "class_g = 'awesome'",
+          "class_g *= 'eww'"
+        ];
 
         detect-rounded-corners = true;
         detect-client-opacity = false;
         detect-transient = true;
         detect-client-leader = false;
+
         mark-wmwim-focused = true;
         mark-ovredir-focues = true;
+
         unredir-if-possible = true;
+        unredir-if-possible-exclude = [
+          "class_g = 'i3lock'",
+          "class_g = 'mpv'"
+        ];
+
         glx-no-stencil = true;
         glx-no-rebind-pixmap = true;
       };

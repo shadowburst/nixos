@@ -10,5 +10,8 @@
           pgrep leftwm || exec startx
       fi
     '';
+    initExtraFirst = ''
+      exec fish
+    '';
   };
 }

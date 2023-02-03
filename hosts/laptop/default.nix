@@ -90,7 +90,7 @@
               primary = true;
               position = "1920x0";
               mode = "3440x1440";
-              rate = "100.00";
+              rate = "60.00";
               crtc = 0;
             };
           };

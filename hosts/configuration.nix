@@ -16,13 +16,26 @@
 
   networking.networkmanager.enable = true;
 
-  hardware.sane = {
-    enable = true;
-    brscan4 = {
+  hardware = {
+    sane = {
       enable = true;
-      netDevices.Brother = {
-        model = "DCP-J785DW";
-        ip = "192.168.1.85";
+      brscan4 = {
+        enable = true;
+        netDevices.Brother = {
+          model = "DCP-J785DW";
+          ip = "192.168.1.85";
+        };
+      };
+    };
+    printers = {
+      ensureDefaultPrinter = "Brother";
+      ensurePrinters = {
+        "Brother" = {
+          name = "Brother";
+          ppdOptions = {
+            DeviceUri = "ipp://192.168.1.85/ipp/print";
+          };
+        };
       };
     };
   };
@@ -37,7 +50,7 @@
     variables = {
       TERMINAL = "alacritty";
       BRAVE = "brave";
-      EDITOR = "emacsclient -t";
+      EDITOR = "nvim";
     };
 
     pathsToLink = [ "/share/zsh" ];
@@ -50,6 +63,7 @@
       wget
       xdg-utils
       xdotool
+      xorg.xkill
       xorg.xrandr
     ];
   };

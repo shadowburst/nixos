@@ -41,12 +41,12 @@
       ];
 
       directory = {
-        style = "bold blue";
+        style = "bold bright-blue";
         format = "[ $path]($style) ";
       };
 
       git_branch = {
-        style = "Bold bright-purple";
+        style = "bold bright-purple";
       };
     };
   };

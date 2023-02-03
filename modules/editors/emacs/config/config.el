@@ -17,8 +17,9 @@
       :iv "C-s" (cmd! (save-buffer)
                       (evil-force-normal-state)))
 
-(map! :i "C-S-v" #'evil-paste-after
-      :v "C-S-c" #'evil-yank)
+(map! :i "C-S-v" (cmd! (evil-paste-before 1)
+                       (right-char))
+      :iv "C-S-c" #'evil-yank)
 
 (map! :after evil-org
       :map evil-org-mode-map
@@ -26,6 +27,10 @@
       :niv "M-k" nil)
 (map! :niv "M-j" #'drag-stuff-down
       :niv "M-k" #'drag-stuff-up)
+
+(map! :map evil-motion-state-map
+      :g "H" #'previous-buffer
+      :g "L" #'next-buffer)
 
 (add-to-list 'auto-mode-alist '("\\.yuck\\'" . lisp-mode))
 
@@ -69,12 +74,14 @@
                               ("png" . "feh")
                               ("docx" . "onlyoffice")
                               ("pdf" . "brave")
+                              ("m4b" . "mpv")
                               ("mkv" . "mpv")
+                              ("avi" . "mpv")
                               ("mp4" . "mpv")))
 
 (setq ranger-cleanup-eagerly t
       ranger-show-hidden 'hidden
-      ranger-hide-cursor t
+      ranger-hide-cursor nil
       ranger-preview-file nil)
 
 (map! :after dired
@@ -101,8 +108,7 @@
   '(org-level-2 ((t (:inherit outline-2 :height 1.3))))
   '(org-level-3 ((t (:inherit outline-3 :height 1.2))))
   '(org-level-4 ((t (:inherit outline-4 :height 1.1))))
-  '(org-level-5 ((t (:inherit outline-5 :height 1.0))))
-)
+  '(org-level-5 ((t (:inherit outline-5 :height 1.0)))))
 
 (use-package! org-auto-tangle
   :defer t
@@ -123,10 +129,15 @@
         treemacs-collapse-dirs 5
         treemacs-expand-after-init nil
         treemacs-expand-added-projects nil
-        treemacs-show-cursor t
-        treemacs-git-mode 'deferred))
+        treemacs-show-cursor t)
+  (treemacs-git-mode 'deferred)
+  (treemacs-project-follow-mode 1))
 
-(add-hook! 'projectile-after-switch-project-hook #'treemacs-display-current-project-exclusively #'treemacs)
+
+(after! (:and doom-themes treemacs)
+  (set-face-foreground 'treemacs-git-untracked-face (doom-color 'green))
+  (set-face-foreground 'treemacs-git-modified-face (doom-color 'orange))
+  (set-face-foreground 'treemacs-git-renamed-face (doom-color 'orange)))
 
 (map! :leader
       :desc "Open Treemacs" "e" #'treemacs)
