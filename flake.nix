@@ -1,6 +1,4 @@
 {
-  description = "My personal NixOS configuration";
-
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
@@ -8,17 +6,23 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    hyprland = {
+      url = "github:vaxerski/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, ...}:
+  outputs = { self, nixpkgs, home-manager, hyprland, ... }:
     let
+      stateVersion = "23.05";
       user = "pbaudry";
-      stateVersion = "22.11";
-    in {
+    in
+    {
       nixosConfigurations = (
         import ./hosts {
           inherit (nixpkgs) lib;
-          inherit nixpkgs home-manager user stateVersion;
+          inherit nixpkgs home-manager hyprland stateVersion user;
         }
       );
     };

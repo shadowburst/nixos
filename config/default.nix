@@ -1,0 +1,17 @@
+[
+  ./cava
+  ./dunst
+  ./eww
+  ./fish
+  ./fuzzel
+  ./git
+  ./hyprland
+  ./kitty
+  ./lazydocker
+  ./lf
+  ./mpv
+  ./neovim
+  ./starship
+  ./tmux
+  ./transmission
+]

@@ -1,47 +1,24 @@
-{ lib, nixpkgs, home-manager, user, stateVersion, ... }:
+{ lib, nixpkgs, home-manager, hyprland, stateVersion, user, ... }:
 
-let
-  pkgs = import nixpkgs {
-    config.allowUnfree = true;
-  };
-in
 {
   laptop = lib.nixosSystem {
     specialArgs = {
-      inherit nixpkgs user stateVersion;
+      inherit nixpkgs stateVersion user;
     };
     modules = [
-      ./laptop
+      hyprland.nixosModules.default
       ./configuration.nix
+      ./laptop/configuration.nix
 
-      home-manager.nixosModules.home-manager {
+      home-manager.nixosModules.home-manager
+      {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = {
-          inherit user stateVersion;
+          inherit stateVersion user;
         };
         home-manager.users.${user} = {
-          imports = [(import ./home.nix)] ++ [(import ./laptop/home.nix)];
-        };
-      }
-    ];
-  };
-  vm = lib.nixosSystem {
-    specialArgs = {
-      inherit nixpkgs user stateVersion;
-    };
-    modules = [
-      ./vm
-      ./configuration.nix
-
-      home-manager.nixosModules.home-manager {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.extraSpecialArgs = {
-          inherit user stateVersion;
-        };
-        home-manager.users.${user} = {
-          imports = [(import ./home.nix)] ++ [(import ./vm/home.nix)];
+          imports = [ (import ./home.nix) ] ++ [ (import ./laptop/home.nix) ];
         };
       }
     ];

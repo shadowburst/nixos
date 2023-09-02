@@ -1,15 +1,12 @@
-{ config, lib, pkgs, user, stateVersion, ... }:
+{ config, lib, pkgs, stateVersion, user, ... }:
 
 let
-  theme = import ../modules/theme;
-in {
+  theme = import ../theme;
+in
+{
   programs.home-manager.enable = true;
 
-  imports =
-    (import ../modules/desktop) ++
-    (import ../modules/editors) ++
-    (import ../modules/programs) ++
-    (import ../modules/shells);
+  imports = (import ../config);
 
   home = {
     inherit stateVersion;
@@ -17,36 +14,10 @@ in {
     username = "${user}";
     homeDirectory = "/home/${user}";
 
-    packages = with pkgs; [
-      arandr
-      brave
-      dconf
-      discord
-      docker
-      exa
-      firefox
-      gimp
-      htop
-      kdenlive
-      onlyoffice-bin
-      pavucontrol
-      playerctl
-      wget
-      wmctrl
-    ];
-
     pointerCursor = {
       name = "Bibata-Modern-Classic";
       package = pkgs.bibata-cursors;
       size = 16;
-      x11.enable = true;
-    };
-  };
-
-  xdg = {
-    userDirs = {
-      enable = true;
-      createDirectories = true;
     };
   };
 
@@ -59,33 +30,38 @@ in {
         "ssh"
       ];
     };
-
-    xcape = {
-      enable = true;
-      mapExpression = {
-        Super_L = "Super_L|a";
-      };
-    };
   };
 
-  gtk = with theme; {
+  gtk = {
     enable = true;
+    font.name = "${theme.fonts.normal} Regular";
+    iconTheme = with theme; {
+      name = icons.name;
+      package = pkgs.${icons.packageName};
+    };
+    cursorTheme = {
+      name = "Bibata-Modern-Classic";
+      package = pkgs.bibata-cursors;
+      size = 16;
+    };
     theme = {
-      name = "Orchis";
-      package = pkgs.orchis-theme;
-    };
-    iconTheme = {
-      name = iconTheme.name;
-      package = pkgs."${iconTheme.package}";
-    };
-    font = {
-      name = "${fonts.normal} Regular";
+      name = "Catppuccin-Macchiato-Standard-Blue-Dark";
+      package = pkgs.catppuccin-gtk.override {
+        accents = [ "blue" ];
+        variant = "macchiato";
+      };
     };
   };
 
   qt = {
     enable = true;
     platformTheme = "gtk";
-    style.name = "adwaita-dark";
+    style = {
+      name = "Catppuccin-Macchiato-Blue";
+      package = pkgs.catppuccin-kvantum.override {
+        accent = "Blue";
+        variant = "Macchiato";
+      };
+    };
   };
 }

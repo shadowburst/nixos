@@ -1,80 +1,71 @@
-{ lib, nixpkgs, pkgs, user, stateVersion, ... }:
+{ lib, pkgs, user, stateVersion, ... }:
 
 {
   users.users.${user} = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkManager" "lp" "scanner" "kvm" "libvertd" ];
-    shell = pkgs.zsh;
+    description = user;
+    extraGroups = [
+      "audio"
+      "docker"
+      "kvm"
+      "libvirtd"
+      "lp"
+      "networkmanager"
+      "scanner"
+      "video"
+      "wheel"
+    ];
+    shell = pkgs.fish;
   };
 
   time.timeZone = "Europe/Paris";
+
   i18n = {
     defaultLocale = "en_GB.UTF-8";
+
+    extraLocaleSettings = {
+      LC_ADDRESS = "en_GB.UTF-8";
+      LC_IDENTIFICATION = "en_GB.UTF-8";
+      LC_MEASUREMENT = "en_GB.UTF-8";
+      LC_MONETARY = "en_GB.UTF-8";
+      LC_NAME = "en_GB.UTF-8";
+      LC_NUMERIC = "en_GB.UTF-8";
+      LC_PAPER = "en_GB.UTF-8";
+      LC_TELEPHONE = "en_GB.UTF-8";
+      LC_TIME = "en_GB.UTF-8";
+    };
   };
 
   console.keyMap = "fr";
 
-  networking.networkmanager.enable = true;
-
-  hardware = {
-    sane = {
+  networking = {
+    firewall = {
       enable = true;
-      brscan4 = {
-        enable = true;
-        netDevices.Brother = {
-          model = "DCP-J785DW";
-          ip = "192.168.1.85";
-        };
-      };
+      allowedUDPPorts = [
+        # Casting
+        8008
+        8009
+      ];
     };
-    printers = {
-      ensureDefaultPrinter = "Brother";
-      ensurePrinters = {
-        "Brother" = {
-          name = "Brother";
-          ppdOptions = {
-            DeviceUri = "ipp://192.168.1.85/ipp/print";
-          };
-        };
-      };
-    };
+
+    networkmanager.enable = true;
   };
 
-  sound = {
-    enable = true;
-    mediaKeys.enable = true;
-  };
-  security.rtkit.enable = true;
-
-  environment = {
-    variables = {
-      TERMINAL = "alacritty";
-      BRAVE = "brave";
-      EDITOR = "nvim";
+  security = {
+    pam.services = {
+      greetd.enableGnomeKeyring = true;
     };
-
-    pathsToLink = [ "/share/zsh" ];
-
-    systemPackages = with pkgs; [
-      cmake
-      curl
-      gcc
-      polkit_gnome
-      wget
-      xdg-utils
-      xdotool
-      xorg.xkill
-      xorg.xrandr
-    ];
+    polkit.enable = true;
+    rtkit.enable = true;
   };
 
   fonts = {
-    enableDefaultFonts = true;
-    fonts = with pkgs; [
+    enableDefaultPackages = true;
+    packages = with pkgs; [
       corefonts
       noto-fonts
       noto-fonts-emoji
-      (nerdfonts.override {
+      (pkgs.nerdfonts.override {
         fonts = [ "JetBrainsMono" ];
       })
     ];
@@ -85,31 +76,69 @@
     };
   };
 
+  environment.variables = {
+    TERMINAL = "kitty";
+    BROWSER = "brave";
+    EDITOR = "nvim";
+    MANPAGER = "nvim +Man!";
+  };
+
+  environment.systemPackages = with pkgs; [
+    bc
+    curl
+    discord
+    exa
+    filelight
+    fish
+    fzf
+    gcc
+    gimp
+    git
+    gnome.gnome-calculator
+    gnome.seahorse
+    gnome.simple-scan
+    gnumake
+    gparted
+    htop
+    iw
+    jq
+    libnotify
+    lutris
+    pavucontrol
+    pciutils
+    playerctl
+    polkit_gnome
+    ripgrep
+    socat
+    sway-contrib.grimshot
+    swaybg
+    swayidle
+    swayimg
+    swaylock-effects
+    transmission
+    trash-cli
+    unzip
+    wdisplays
+    wget
+    wl-clipboard
+    xdg-utils
+    xfce.thunar
+    xfce.thunar-volman
+  ];
+
+  programs = {
+    fish.enable = true;
+    gamemode.enable = true;
+    light.enable = true;
+    ssh.startAgent = true;
+    steam = {
+      enable = true;
+      remotePlay.openFirewall = true;
+    };
+  };
+
+  # List services that you want to enable:
   services = {
-    cron = {
-      enable = true;
-      systemCronJobs = [
-        "0 */1 * * * ${pkgs.transmission}/bin/transmission-remote -l | grep 100\% | grep Done | awk '{print $1}' | xargs -n 1 -I \% ${pkgs.transmission}/bin/transmission-remote -t \% -r"
-      ];
-    };
-    fstrim.enable = true;
-    printing.enable = true;
-    transmission.enable = true;
-
-    openssh = {
-      enable = true;
-      allowSFTP = true;
-    };
-
-    pipewire = {
-      enable = true;
-      pulse.enable = true;
-      alsa = {
-        enable = true;
-        support32Bit = true;
-      };
-    };
-
     avahi = {
       enable = true;
       nssmdns = true;
@@ -119,60 +148,76 @@
         userServices = true;
       };
     };
-
-    xserver = {
+    cron = {
       enable = true;
-      layout = "fr";
-      xkbVariant = "azerty";
-      displayManager = {
-        startx.enable = true;
-        defaultSession = "none+leftwm";
+      systemCronJobs = [
+        "0 */1 * * * transmission-remote -l | grep 100\% | grep Done | awk '{print $1}' | xargs -n 1 -I \% transmission-remote -t \% -r"
+      ];
+    };
+    dbus.enable = true;
+    greetd = {
+      enable = true;
+      settings = {
+        default_session = {
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --time-format '%A %e, %B %Y' --remember --asterisks --cmd Hyprland";
+          user = user;
+        };
       };
-      windowManager = {
-        leftwm.enable = true;
+    };
+    openssh = {
+      enable = true;
+      allowSFTP = true;
+    };
+  };
+
+  systemd = {
+    services = {
+      greetd.serviceConfig = {
+        Type = "idle";
+        StandardInput = "tty";
+        StandardOutput = "tty";
+        StandardError = "journal";
+        TTYReset = true;
+        TTYVHangup = true;
+        TTYVTDisallocate = true;
+      };
+    };
+    user.services.polkit-gnome-authentication-agent-1 = {
+      description = "polkit-gnome-authentication-agent-1";
+      wantedBy = [ "default.target" ];
+      serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
       };
     };
   };
 
-  nix = {
-    settings = {
-      auto-optimise-store = true;
-    };
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+  };
 
+  virtualisation = {
+    docker.enable = true;
+  };
+
+  nixpkgs.config.allowUnfree = true;
+
+  nix = {
     gc = {
       automatic = true;
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
-
-    # package = pkgs.nixFlakes;
-    registry.nixpkgs.flake = nixpkgs;
-    extraOptions = ''
-      experimental-features = nix-command flakes
-      keep-outputs          = true
-      keep-derivations      = true
-    '';
+    settings = {
+      auto-optimise-store = true;
+    };
   };
-  nixpkgs.config.allowUnfree = true;
 
   system = {
     inherit stateVersion;
-    autoUpgrade = {
-      enable = true;
-      channel = "https://nixos.org/channels/nixos-unstable";
-    };
-
-    userActivationScripts = {
-      emacs.text = ''
-        DOOM="$HOME/.emacs.d"
-
-        if [ ! -d "$DOOM" ]; then
-            git clone https://github.com/hlissner/doom-emacs.git $DOOM
-            "$DOOM/bin/doom" -y install
-        fi
-
-        "$DOOM/bin/doom" sync
-      '';
-    };
   };
 }
