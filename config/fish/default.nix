@@ -41,7 +41,7 @@
       cp = "cp -i";
       mv = "mv -i";
       rm = "rm -i";
-      grep = "--color=always";
+      grep = "grep --color=always";
       mkdir = "mkdir -p";
       ls = "exa --icons --group-directories-first --color=always";
       ll = "exa --icons --group-directories-first --color=always -la";

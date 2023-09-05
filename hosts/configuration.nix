@@ -85,6 +85,7 @@
 
   environment.systemPackages = with pkgs; [
     bc
+    brave
     curl
     discord
     exa
@@ -114,7 +115,6 @@
     swaybg
     swayidle
     swayimg
-    swaylock-effects
     transmission
     trash-cli
     unzip
@@ -129,6 +129,7 @@
   programs = {
     fish.enable = true;
     gamemode.enable = true;
+    hyprland.enable = true;
     light.enable = true;
     ssh.startAgent = true;
     steam = {
