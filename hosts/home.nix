@@ -23,6 +23,12 @@ in
 
   services = {
     gnome-keyring.enable = true;
+    gpg-agent = {
+      enable = true;
+      enableFishIntegration = true;
+      enableSshSupport = true;
+      pinentryFlavor = "gnome3";
+    };
   };
 
   gtk = {

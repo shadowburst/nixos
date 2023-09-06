@@ -133,14 +133,12 @@
     fish.enable = true;
     gamemode.enable = true;
     light.enable = true;
-    ssh.startAgent = true;
     steam = {
       enable = true;
       remotePlay.openFirewall = true;
     };
   };
 
-  # List services that you want to enable:
   services = {
     avahi = {
       enable = true;
@@ -157,7 +155,10 @@
         "0 */1 * * * transmission-remote -l | grep 100\% | grep Done | awk '{print $1}' | xargs -n 1 -I \% transmission-remote -t \% -r"
       ];
     };
-    dbus.enable = true;
+    dbus = {
+      enable = true;
+      packages = [ pkgs.gcr ];
+    };
     greetd = {
       enable = true;
       settings = {
