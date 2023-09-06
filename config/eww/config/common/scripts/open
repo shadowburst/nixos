@@ -5,7 +5,7 @@ case $1 in
 	blueman-manager
 	;;
 "launcher")
-	"$HOME"/.scripts/app-menu.sh
+	app-menu
 	;;
 "network")
 	$TERMINAL -e nmtui

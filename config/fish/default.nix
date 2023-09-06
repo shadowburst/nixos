@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, system, ... }:
 
 {
   programs.fish = {
@@ -46,6 +46,8 @@
       ls = "exa --icons --group-directories-first --color=always";
       ll = "exa --icons --group-directories-first --color=always -la";
       lt = "exa --icons --group-directories-first --color=always -T";
+      flake-rebuild-switch = "sudo nixos-rebuild switch --flake ~/nixos#${system}";
+      flake-rebuild-boot = "sudo nixos-rebuild boot --flake ~/nixos#${system}";
     };
     shellInit = ''
       set TERM xterm-256color

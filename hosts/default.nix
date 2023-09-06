@@ -4,6 +4,8 @@
   laptop = lib.nixosSystem {
     specialArgs = {
       inherit nixpkgs stateVersion user;
+
+      system = "laptop";
     };
     modules = [
       hyprland.nixosModules.default
@@ -16,6 +18,8 @@
         home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = {
           inherit stateVersion user;
+
+          system = "laptop";
         };
         home-manager.users.${user} = {
           imports = [ (import ./home.nix) ] ++ [ (import ./laptop/home.nix) ];

@@ -5,6 +5,7 @@
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
+    # initrd.kernelModules = [ "i915" ];
 
     loader = {
       grub = {
@@ -29,12 +30,10 @@
     enableRedistributableFirmware = true;
     opengl = {
       enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
       extraPackages = with pkgs; [
         intel-media-driver
-        libvdpau-va-gl
-        vaapiVdpau
+        # libvdpau-va-gl
+        # vaapiVdpau
       ];
     };
     # printers = {
@@ -58,6 +57,7 @@
     #   };
     # };
   };
+  powerManagement.cpuFreqGovernor = "performance";
 
   networking.hostName = "xps";
 
@@ -70,6 +70,7 @@
     auto-cpufreq.enable = true;
     blueman.enable = true;
     fstrim.enable = true;
+    fwupd.enable = true;
     pipewire = {
       enable = true;
       audio.enable = true;
@@ -80,6 +81,6 @@
       };
     };
     printing.enable = true;
-    tlp.enable = true;
+    # tlp.enable = true;
   };
 }

@@ -7,6 +7,7 @@
     extraGroups = [
       "audio"
       "docker"
+      "greeter"
       "kvm"
       "libvirtd"
       "lp"
@@ -54,6 +55,7 @@
   security = {
     pam.services = {
       greetd.enableGnomeKeyring = true;
+      swaylock = { };
     };
     polkit.enable = true;
     rtkit.enable = true;
@@ -127,9 +129,9 @@
   ];
 
   programs = {
+    dconf.enable = true;
     fish.enable = true;
     gamemode.enable = true;
-    hyprland.enable = true;
     light.enable = true;
     ssh.startAgent = true;
     steam = {
@@ -161,7 +163,6 @@
       settings = {
         default_session = {
           command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --time-format '%A %e, %B %Y' --remember --asterisks --cmd Hyprland";
-          user = user;
         };
       };
     };
@@ -181,17 +182,6 @@
         TTYReset = true;
         TTYVHangup = true;
         TTYVTDisallocate = true;
-      };
-    };
-    user.services.polkit-gnome-authentication-agent-1 = {
-      description = "polkit-gnome-authentication-agent-1";
-      wantedBy = [ "default.target" ];
-      serviceConfig = {
-        Type = "simple";
-        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
       };
     };
   };
@@ -215,6 +205,7 @@
     };
     settings = {
       auto-optimise-store = true;
+      experimental-features = [ "nix-command" "flakes" ];
     };
   };
 

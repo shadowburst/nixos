@@ -89,4 +89,9 @@ in
       };
     };
   };
+
+  xdg.configFile."dunst/scripts" = {
+    source = ./scripts;
+    recursive = true;
+  };
 }

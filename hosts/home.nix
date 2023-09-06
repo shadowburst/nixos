@@ -22,14 +22,7 @@ in
   };
 
   services = {
-    gnome-keyring = {
-      enable = true;
-      components = [
-        "pkcs11"
-        "secrets"
-        "ssh"
-      ];
-    };
+    gnome-keyring.enable = true;
   };
 
   gtk = {
@@ -45,7 +38,7 @@ in
       size = 16;
     };
     theme = {
-      name = "Catppuccin-Macchiato-Standard-Blue-Dark";
+      name = "Catppuccin-Macchiato-Standard-Blue-dark";
       package = pkgs.catppuccin-gtk.override {
         accents = [ "blue" ];
         variant = "macchiato";

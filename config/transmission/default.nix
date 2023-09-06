@@ -65,7 +65,7 @@ in
       "script-torrent-done-filename": "/home/${user}/.config/${torrent_done_path}",
       "seed-queue-enabled": true,
       "seed-queue-size": 5,
-      "speed-limit-down": 6000,
+      "speed-limit-down": 300,
       "speed-limit-down-enabled": true,
       "speed-limit-up": 150,
       "speed-limit-up-enabled": true,
@@ -79,12 +79,14 @@ in
     }
   '';
 
-  xdg.configFile."${torrent_done_path}" = {
-    text = ''
-      #!/usr/bin/env bash
-
-      notify-send "Transmission" "$TR_TORRENT_NAME has finished downloading"
-    '';
-    executable = true;
+  xdg.configFile = {
+    "${torrent_done_path}" = {
+      source = ./scripts/clear-torrents.sh;
+      executable = true;
+    };
+    "transmission-daemon/scripts/clear-torrents.sh" = {
+      source = ./scripts/clear-torrents.sh;
+      executable = true;
+    };
   };
 }

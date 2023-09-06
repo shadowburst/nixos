@@ -12,6 +12,9 @@
   ./mpv
   ./neovim
   ./starship
+  ./swayidle
+  ./swaylock
   ./tmux
   ./transmission
+  ./wlogout
 ]

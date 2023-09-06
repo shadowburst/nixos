@@ -33,22 +33,24 @@
       "{" = "multiply speed 0.5";
       "}" = "multiply speed 2.0";
     };
+    defaultProfiles = [ "gpu-hq" ];
     config = {
       fs = true;
       osc = false;
-      profile = "gpu-hq";
       scale = "ewa_lanczossharp";
       cscale = "ewa_lanczossharp";
       tscale = "oversample";
-      interpolation = true;
+      interpolation = "";
       video-sync = "display-resample";
-      hwdec = "auto";
-      no-window-dragging = true;
-      no-osd-bar = true;
+      hwdec = "auto-safe";
+      vo = "gpu";
+      gpu-context = "wayland";
+      no-window-dragging = "";
+      no-osd-bar = "";
     };
     scripts = with pkgs.mpvScripts; [
       mpris
-      thumbnail
+      thumbfast
     ];
   };
 
