@@ -91,6 +91,7 @@
     curl
     discord
     exa
+    fd
     filelight
     fish
     fzf
