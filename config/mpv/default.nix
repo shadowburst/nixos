@@ -55,7 +55,13 @@
   };
 
   xdg.configFile = {
-    "mpv/scripts/modern.lua".source = ./modern.lua;
-    "mpv/fonts/Material-Design-Iconic-Font.ttf".source = ./Material-Design-Iconic-Font.ttf;
+    "mpv/scripts" = {
+      source = ./scripts;
+      recursive = true;
+    };
+    "mpv/fonts" = {
+      source = ./fonts;
+      recursive = true;
+    };
   };
 }
