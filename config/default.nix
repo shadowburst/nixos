@@ -16,5 +16,6 @@
   ./swaylock
   ./tmux
   ./transmission
+  ./wallpapers
   ./wlogout
 ]
