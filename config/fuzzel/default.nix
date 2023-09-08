@@ -3,15 +3,13 @@
     enable = true;
   };
 
-  xdg.configFile.fuzzel = {
+  xdg.configFile."fuzzel" = {
     source = ./config;
     recursive = true;
   };
 
-  home.file = {
-    ".local/bin/app-menu" = {
-      source = ./bin/app-menu;
-      executable = true;
-    };
+  home.file.".local/bin/app-menu" = {
+    source = ./bin/app-menu;
+    executable = true;
   };
 }

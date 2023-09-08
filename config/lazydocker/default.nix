@@ -5,7 +5,8 @@
     lazydocker
   ];
 
-  xdg.configFile."lazydocker/config.yml" = {
-    source = ./config.yml;
+  xdg.configFile."lazydocker" = {
+    source = ./config;
+    recursive = true;
   };
 }

@@ -6,10 +6,8 @@
     package = pkgs.swaylock-effects;
   };
 
-  home.file = {
-    ".local/bin/lock" = {
-      source = ./bin/lock;
-      executable = true;
-    };
+  home.file.".local/bin/lock" = {
+    source = ./bin/lock;
+    executable = true;
   };
 }

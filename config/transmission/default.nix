@@ -1,8 +1,5 @@
 { user, ... }:
 
-let
-  torrent_done_path = "transmission-daemon/scripts/torrent-done.sh";
-in
 {
   xdg.configFile."transmission-daemon/settings.json".text = ''
     {
@@ -62,7 +59,7 @@ in
       "rpc-whitelist-enabled": true,
       "scrape-paused-torrents-enabled": true,
       "script-torrent-done-enabled": true,
-      "script-torrent-done-filename": "/home/${user}/.config/${torrent_done_path}",
+      "script-torrent-done-filename": "/home/${user}/.config/transmission-daemon/scripts/torrent-done.sh",
       "seed-queue-enabled": true,
       "seed-queue-size": 5,
       "speed-limit-down": 300,
@@ -79,14 +76,8 @@ in
     }
   '';
 
-  xdg.configFile = {
-    "${torrent_done_path}" = {
-      source = ./scripts/clear-torrents.sh;
-      executable = true;
-    };
-    "transmission-daemon/scripts/clear-torrents.sh" = {
-      source = ./scripts/clear-torrents.sh;
-      executable = true;
-    };
+  xdg.configFile."transmission-daemon/scripts" = {
+    source = ./scripts;
+    recursive = true;
   };
 }

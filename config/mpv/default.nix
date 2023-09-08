@@ -54,14 +54,13 @@
     ];
   };
 
-  xdg.configFile = {
-    "mpv/scripts" = {
-      source = ./scripts;
-      recursive = true;
-    };
-    "mpv/fonts" = {
-      source = ./fonts;
-      recursive = true;
-    };
+  xdg.configFile."mpv/scripts" = {
+    source = ./scripts;
+    recursive = true;
+  };
+
+  xdg.configFile."mpv/fonts" = {
+    source = ./fonts;
+    recursive = true;
   };
 }
