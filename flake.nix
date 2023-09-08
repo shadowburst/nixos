@@ -11,9 +11,11 @@
       url = "github:vaxerski/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
-  outputs = { self, nixpkgs, home-manager, hyprland, ... }:
+  outputs = { self, nixpkgs, nixos-hardware, home-manager, hyprland, ... }:
     let
       stateVersion = "23.05";
       user = "pbaudry";
@@ -22,7 +24,7 @@
       nixosConfigurations = (
         import ./hosts {
           inherit (nixpkgs) lib;
-          inherit nixpkgs home-manager hyprland stateVersion user;
+          inherit nixpkgs nixos-hardware home-manager hyprland stateVersion user;
         }
       );
     };

@@ -4,8 +4,7 @@
   imports = [ (import ./hardware-configuration.nix) ];
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_latest;
-    # initrd.kernelModules = [ "i915" ];
+    kernelPackages = pkgs.linuxPackages_zen;
 
     loader = {
       grub = {
@@ -26,15 +25,10 @@
 
   hardware = {
     bluetooth.enable = true;
-    cpu.intel.updateMicrocode = true;
-    enableRedistributableFirmware = true;
     opengl = {
       enable = true;
-      extraPackages = with pkgs; [
-        intel-media-driver
-        # libvdpau-va-gl
-        # vaapiVdpau
-      ];
+      driSupport = true;
+      driSupport32Bit = true;
     };
     # printers = {
     #   ensureDefaultPrinter = "Brother";
@@ -62,7 +56,6 @@
   networking.hostName = "xps";
 
   environment.variables = {
-    VDPAU_DRIVER = "va_gl";
     LIBVA_DRIVER_NAME = "iHD";
   };
 

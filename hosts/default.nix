@@ -1,4 +1,4 @@
-{ lib, nixpkgs, home-manager, hyprland, stateVersion, user, ... }:
+{ lib, nixpkgs, nixos-hardware, home-manager, hyprland, stateVersion, user, ... }:
 
 {
   laptop = lib.nixosSystem {
@@ -8,6 +8,8 @@
       system = "laptop";
     };
     modules = [
+      nixos-hardware.nixosModules.dell-xps-13-9310
+      nixos-hardware.nixosModules.common-gpu-intel
       hyprland.nixosModules.default
       ./configuration.nix
       ./laptop/configuration.nix

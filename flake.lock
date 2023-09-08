@@ -31,11 +31,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1694009658,
-        "narHash": "sha256-ol7Zt9JEzT+lGix97GkhAtrnDuufPP+JpJK4stRvWoM=",
+        "lastModified": 1694029537,
+        "narHash": "sha256-TxVjVBkLlVhJ91gCyHfhy0FaJ9Din6/NlO+eAK3QpG4=",
         "owner": "vaxerski",
         "repo": "Hyprland",
-        "rev": "a15e3e1f380e3b90f976bc7d1d8b4daabd4cbd3b",
+        "rev": "8c83852704ad8d78b839bd532d73b3b9e44724b9",
         "type": "github"
       },
       "original": {
@@ -69,6 +69,22 @@
         "type": "github"
       }
     },
+    "nixos-hardware": {
+      "locked": {
+        "lastModified": 1693718952,
+        "narHash": "sha256-+nGdJlgTk0MPN7NygopipmyylVuAVi7OItIwTlwtGnw=",
+        "owner": "NixOS",
+        "repo": "nixos-hardware",
+        "rev": "793de77d9f83418b428e8ba70d1e42c6507d0d35",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "master",
+        "repo": "nixos-hardware",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1693844670,
@@ -89,6 +105,7 @@
       "inputs": {
         "home-manager": "home-manager",
         "hyprland": "hyprland",
+        "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs"
       }
     },
