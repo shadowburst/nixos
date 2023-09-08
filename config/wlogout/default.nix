@@ -48,11 +48,11 @@ in
           font-family: "JetBrainsMono Nerd Font Mono";
       }
 
-      button:focus {
+      button:hover {
           outline-style: none;
           color: ${colors.primary};
       }
-      button:active {
+      button:focus {
           outline-style: none;
           background-color: ${colors.primary};
           color: ${colors.bg};
