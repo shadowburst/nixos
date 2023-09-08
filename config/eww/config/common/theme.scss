@@ -1,37 +1,8 @@
 @use "sass:list";
 @use "sass:map";
 
-$foreground: #c8d3f5;
-$background: #1b1d2b;
-$card: #222436;
-$primary: #82aaff;
-$secondary: #4fd6be;
-$success: #c3e88d;
-$warning: #ff966c;
-$danger: #ff757f;
-$disabled: #2d3f76;
-$colors: (
-  foreground: $foreground,
-  background: $background,
-  card: $card,
-  primary: $primary,
-  secondary: $secondary,
-  success: $success,
-  warning: $warning,
-  danger: $danger,
-  disabled: $disabled,
-  transparent: transparent,
-);
-
-$normal-font: "Noto Sans";
-$mono-font: "Noto Sans Mono";
-$nerd-font: "JetBrainsMono Nerd Font Mono";
-$nerd-font-variable: "JetBrainsMono Nerd Font";
-$fonts: (
-  normal: $normal-font,
-  mono: $mono-font,
-  nerd: $nerd-font,
-);
+@import "./colors.scss";
+@import "./fonts.scss";
 
 @mixin transition($type: null) {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -150,7 +121,7 @@ tooltip {
   @include rounded(sm);
   @include bg;
   @include text;
-  @include font($mono-font);
+  @include font($nerd-font);
 
   & label {
     @include m(1);
