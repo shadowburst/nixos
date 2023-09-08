@@ -5,7 +5,8 @@
     cava
   ];
 
-  xdg.configFile = {
-    "cava".source = ./config;
+  xdg.configFile."cava" = {
+    source = ./config;
+    recursive = true;
   };
 }
