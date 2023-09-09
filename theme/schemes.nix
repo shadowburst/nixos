@@ -5,7 +5,7 @@
 
     disabled = "#2D3F76";
 
-    black = "#1B1D3B";
+    black = "#1B1D2B";
     dark_gray = "#444A73";
 
     dark_red = "#C53B53";

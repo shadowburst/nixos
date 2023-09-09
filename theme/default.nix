@@ -10,7 +10,6 @@ in
     success = colors.dark_green;
     warning = colors.dark_yellow;
     danger = colors.dark_red;
-    card = colors.dark_gray;
   };
 
   fonts = {

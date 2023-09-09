@@ -15,8 +15,8 @@ in
 
   xdg.configFile."eww/common/colors.scss".text = with theme; ''
     $foreground: ${colors.fg};
-    $background: ${colors.bg};
-    $card: ${colors.card};
+    $background: ${colors.black};
+    $card: ${colors.bg};
     $primary: ${colors.primary};
     $secondary: ${colors.secondary};
     $success: ${colors.success};
