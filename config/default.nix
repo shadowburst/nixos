@@ -6,6 +6,7 @@
   ./fuzzel
   ./git
   ./hyprland
+  ./kanshi
   ./kitty
   ./lazydocker
   ./lf

@@ -6,8 +6,9 @@
     settings = {
       "$mod" = "SUPER";
       monitor = [
-        "DP-1, highres, 1920x0, 1"
-        "eDP-1, highres, 0x200, 1"
+        # "DP-1, highres"
+        # "eDP-1, highres"
+        ", highres, auto, 1"
         ", addreserved, 42, 0, 0, 0"
       ];
       workspace = [
