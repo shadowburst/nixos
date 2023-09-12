@@ -6,7 +6,7 @@
         outputs = [
           {
             criteria = "eDP-1";
-            mode = "1920x1200@59Hz";
+            mode = "1920x1200@60Hz";
             scale = 1.00;
           }
         ];
@@ -15,8 +15,8 @@
         outputs = [
           {
             criteria = "eDP-1";
-            mode = "1920x1200@59Hz";
-            position = "0,200";
+            mode = "1920x1200@60Hz";
+            position = "0,120";
             scale = 1.00;
           }
           {

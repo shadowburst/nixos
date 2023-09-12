@@ -1,13 +1,14 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
+let
+  theme = import ../../theme;
+in
 {
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
       "$mod" = "SUPER";
       monitor = [
-        # "DP-1, highres"
-        # "eDP-1, highres"
         ", highres, auto, 1"
         ", addreserved, 42, 0, 0, 0"
       ];
@@ -21,12 +22,12 @@
       exec = [
         "~/.config/hypr/scripts/on-reload.sh"
       ];
-      general = {
+      general = with theme; {
         border_size = 3;
         gaps_in = 4;
         gaps_out = 6;
-        "col.inactive_border" = "rgb(1b1d2b)";
-        "col.active_border" = "rgb(82aaff)";
+        "col.inactive_border" = "rgb(${lib.removePrefix "#" colors.bg})";
+        "col.active_border" = "rgb(${lib.removePrefix "#" colors.primary})";
         layout = "master";
       };
       decoration = {
@@ -194,3 +195,4 @@
     recursive = true;
   };
 }
+
