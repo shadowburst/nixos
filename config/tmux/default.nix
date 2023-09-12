@@ -1,3 +1,8 @@
+{ lib, pkgs, ... }:
+
+let
+  tmux-sessionizer = pkgs.writeShellScriptBin "tmux-sessionizer" (lib.fileContents ./bin/tmux-sessionizer);
+in
 {
   programs.tmux = {
     enable = true;
@@ -8,8 +13,7 @@
     recursive = true;
   };
 
-  home.file.".local/bin/tmux-sessionizer" = {
-    source = ./bin/tmux-sessionizer;
-    executable = true;
-  };
+  home.packages = [
+    tmux-sessionizer
+  ];
 }

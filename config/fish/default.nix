@@ -52,8 +52,6 @@
     shellInit = ''
       set TERM xterm-256color
 
-      set -U fish_user_paths ~/.local/bin $fish_user_paths
-
       set fish_greeting
       set fish_color_command green
       set fish_color_param foreground

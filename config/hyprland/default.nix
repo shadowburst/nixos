@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ lib, pkgs, ... }:
 
 let
   theme = import ../../theme;
@@ -99,7 +99,7 @@ in
         "$mod, mouse:273, resizewindow"
       ];
       bindr = [
-        "$mod, SUPER_L, exec, ~/.local/bin/app-menu"
+        "$mod, SUPER_L, exec, app-menu"
       ];
       bind = [
         # Compositor
@@ -158,7 +158,7 @@ in
         "$mod SHIFT CTRL, l, movewindow, mon:r"
 
         # Menus
-        "$mod, x, exec, ~/.local/bin/power-menu"
+        "$mod, x, exec, power-menu"
 
         # Applications
         "$mod, return, exec, $TERMINAL"
@@ -169,17 +169,17 @@ in
         ", xf86calculator, exec, gnome-calculator"
 
         # Audio
-        ", xf86audiomute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && ~/.config/dunst/scripts/notify-volume"
-        ", xf86audiolowervolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ '5%-' && ~/.config/dunst/scripts/notify-volume"
-        ", xf86audioraisevolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ '5%+' && ~/.config/dunst/scripts/notify-volume"
+        ", xf86audiomute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && notify-volume"
+        ", xf86audiolowervolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ '5%-' && notify-volume"
+        ", xf86audioraisevolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ '5%+' && notify-volume"
         ", xf86audioprev, exec, playerctl previous"
         ", xf86audioplay, exec, playerctl play-pause"
         ", xf86audiopause, exec, playerctl play-pause"
         ", xf86audionext, exec, playerctl next"
 
         # Brightness
-        ", xf86monbrightnessdown, exec, light -U 5 && ~/.config/dunst/scripts/notify-brightness"
-        ", xf86monbrightnessup, exec, light -A 5 && ~/.config/dunst/scripts/notify-brightness"
+        ", xf86monbrightnessdown, exec, light -U 5 && notify-brightness"
+        ", xf86monbrightnessup, exec, light -A 5 && notify-brightness"
 
         # Screenshots
         ", print, exec, grimshot --notify copy screen"

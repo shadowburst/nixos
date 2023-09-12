@@ -2,6 +2,9 @@
 
 let
   theme = import ../../theme;
+
+  notify-brightness = pkgs.writeShellScriptBin "notify-brightness" (lib.fileContents ./scripts/notify-brightness);
+  notify-volume = pkgs.writeShellScriptBin "notify-volume" (lib.fileContents ./scripts/notify-volume);
 in
 {
   services.dunst = {
@@ -90,8 +93,8 @@ in
     };
   };
 
-  xdg.configFile."dunst/scripts" = {
-    source = ./scripts;
-    recursive = true;
-  };
+  home.packages = [
+    notify-brightness
+    notify-volume
+  ];
 }

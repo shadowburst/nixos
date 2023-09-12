@@ -1,3 +1,10 @@
+{ pkgs, ... }:
+
+let
+  app-menu = pkgs.writeShellScriptBin "app-menu" ''
+    fuzzel
+  '';
+in
 {
   programs.fuzzel = {
     enable = true;
@@ -8,8 +15,7 @@
     recursive = true;
   };
 
-  home.file.".local/bin/app-menu" = {
-    source = ./bin/app-menu;
-    executable = true;
-  };
+  home.packages = [
+    app-menu
+  ];
 }

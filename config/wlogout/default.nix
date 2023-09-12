@@ -1,5 +1,11 @@
+{ pkgs, ... }:
+
 let
   theme = import ../../theme;
+
+  power-menu = pkgs.writeShellScriptBin "power-menu" ''
+    wlogout --protocol layer-shell --buttons-per-row 4 --margin-top 450 --margin-bottom 450 --margin-left 300 --margin-right 300
+  '';
 in
 {
   programs.wlogout = {
@@ -8,7 +14,7 @@ in
       {
         label = "lock";
         text = "󰍁";
-        action = "sleep 0.3 && ~/.local/bin/lock";
+        action = "sleep 0.3 && lock";
         keybind = "l";
       }
       {
@@ -47,7 +53,6 @@ in
           font-size: 10rem;
           font-family: "JetBrainsMono Nerd Font Mono";
       }
-
       button:hover {
           outline-style: none;
           color: ${colors.primary};
@@ -60,8 +65,7 @@ in
     '';
   };
 
-  home.file.".local/bin/power-menu" = {
-    source = ./bin/power-menu;
-    executable = true;
-  };
+  home.packages = [
+    power-menu
+  ];
 }
