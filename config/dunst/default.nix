@@ -54,8 +54,6 @@ in
         hide_duplicate_count = false;
         show_indicators = true;
         icon_position = "left";
-        min_icon_size = 32;
-        max_icon_size = 32;
         enable_recursive_icon_lookup = true;
         always_run_scripts = true;
         sticky_history = true;

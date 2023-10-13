@@ -20,7 +20,7 @@ in
   };
 
   icons = {
-    name = "Tela-Dark";
-    packageName = "tela-icon-theme";
+    name = "Tela-dark";
+    packageName = "tela-circle-icon-theme";
   };
 }
