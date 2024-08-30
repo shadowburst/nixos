@@ -150,12 +150,6 @@
         userServices = true;
       };
     };
-    cron = {
-      enable = true;
-      systemCronJobs = [
-        ''0 */1 * * * transmission-remote -l | grep 100\% | grep Done | awk '{print $1}' | xargs -I \% transmission-remote -t \% -r''
-      ];
-    };
     dbus = {
       enable = true;
       packages = [ pkgs.gcr ];
@@ -171,17 +165,17 @@
     openssh = {
       enable = true;
       allowSFTP = true;
-      settings = {
-        Macs = [
-          "hmac-sha2-512-etm@openssh.com"
-          "hmac-sha2-256-etm@openssh.com"
-          "umac-128-etm@openssh.com"
-          "hmac-sha2-256"
-        ];
-      };
-      extraConfig = ''
-        HostKeyAlgorithms +ssh-rsa
-      '';
+      # settings = {
+      #   Macs = [
+      #     "hmac-sha2-512-etm@openssh.com"
+      #     "hmac-sha2-256-etm@openssh.com"
+      #     "umac-128-etm@openssh.com"
+      #     "hmac-sha2-256"
+      #   ];
+      # };
+      # extraConfig = ''
+      #   HostKeyAlgorithms +ssh-rsa
+      # '';
     };
   };
 
